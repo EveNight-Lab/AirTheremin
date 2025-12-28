@@ -1,4 +1,45 @@
-# React + TypeScript + Vite
+# Gods Doodle Pad Frontend
+
+React + TypeScript + Vite 기반의 프론트엔드 프로젝트입니다.
+
+## 📚 코딩 가이드라인
+
+**⚠️ 중요: 모든 코딩 작업 전에 반드시 [`CODING_GUIDE.md`](./CODING_GUIDE.md) 파일을 확인하세요.**
+
+프로젝트의 코딩 스타일, 규칙, 베스트 프랙티스가 상세히 정리되어 있습니다.
+
+### 주요 규칙 요약
+- **SSR/SSG**: SEO 및 애드센스 크롤링을 위한 서버 사이드 렌더링 지원
+- **API 중단 기능**: 모든 API 호출에 AbortController 필수 적용
+- **폰트 시스템**: rem 기반, 제한된 rem 수치만 사용
+- **스타일링**: Tailwind CSS 우선, 필요시 인라인 스타일
+- **코드 최적화**: 중복 코드 제거, 불필요한 코드 제거
+
+## 기술 스택
+
+- **React**: 19.2.0
+- **TypeScript**: 5.9.3
+- **Vite**: 7.2.4
+- **Tailwind CSS**: 3.4.19
+- **React Compiler**: 활성화됨
+
+## 시작하기
+
+```bash
+# 의존성 설치
+npm install
+
+# 개발 서버 실행
+npm run dev
+
+# 빌드
+npm run build
+
+# 린트 검사
+npm run lint
+```
+
+---
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

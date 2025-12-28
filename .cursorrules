@@ -1,0 +1,58 @@
+# GDP Frontend 프로젝트 코딩 규칙
+
+## ⚠️ 필수: 코딩 작업 전 반드시 확인
+
+모든 코딩 작업을 시작하기 전에 **반드시 `CODING_GUIDE.md` 파일을 먼저 읽고 확인**해야 합니다.
+
+## 코딩 전 체크리스트
+
+1. ✅ `CODING_GUIDE.md` 파일을 읽었는가?
+2. ✅ 프로젝트의 기술 스택을 확인했는가? (React 19, TypeScript, Tailwind CSS)
+3. ✅ 파일 구조 규칙을 준수하는가?
+4. ✅ 네이밍 컨벤션을 따르는가?
+
+## 핵심 규칙 요약
+
+### 기술 스택
+- React 19.2.0 + TypeScript 5.9.3
+- Vite 7.2.4
+- Tailwind CSS 3.4.19
+- React Compiler 활성화
+
+### 필수 준수 사항
+- TypeScript 타입 정의 필수 (any 사용 금지)
+- Tailwind CSS 우선 사용 (인라인 스타일 지양)
+- 함수형 컴포넌트 사용
+- 컴포넌트는 단일 책임 원칙 준수
+- ESLint 규칙 준수
+
+### 파일 구조
+- `src/components/` - 재사용 가능한 컴포넌트
+- `src/pages/` - 페이지 컴포넌트
+- `src/hooks/` - Custom Hooks
+- `src/utils/` - 유틸리티 함수
+- `src/types/` - TypeScript 타입 정의
+- `src/services/` - API 서비스
+
+### 네이밍 규칙
+- 컴포넌트: PascalCase (예: `UserProfile.tsx`)
+- 함수/변수: camelCase (예: `getUserData`)
+- 상수: UPPER_SNAKE_CASE (예: `API_BASE_URL`)
+
+## 코딩 작업 시 항상 고려할 사항
+
+1. **타입 안정성**: 모든 변수와 함수에 타입 정의
+2. **가독성**: 코드는 읽기 쉽고 이해하기 쉬워야 함
+3. **재사용성**: 3번 이상 사용되면 컴포넌트로 분리
+4. **성능**: React Compiler가 자동 최적화하므로 불필요한 최적화 지양
+5. **일관성**: 프로젝트 전체에 걸쳐 일관된 스타일 유지
+6. **SEO 최적화**: 핵심 페이지는 SSR/SSG로 구현, 초기 HTML에 텍스트 포함
+7. **API 중단 기능**: 모든 API 호출에 AbortController 필수 적용
+8. **폰트 시스템**: rem 기반, 제한된 rem 수치만 사용 (0.75rem, 0.875rem, 1rem, 1.125rem, 1.25rem, 1.5rem, 2rem, 2.5rem, 3rem)
+9. **스타일링**: Tailwind 우선, 실무적으로 인라인이 더 적합한 경우만 인라인 사용
+10. **코드 최적화**: 중복 코드 제거, 불필요한 코드 제거
+
+## 참고 문서
+
+상세한 가이드라인은 `CODING_GUIDE.md` 파일을 참고하세요.
+
