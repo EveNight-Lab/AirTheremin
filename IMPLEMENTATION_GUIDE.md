@@ -8,25 +8,30 @@
 **SSR/SEO 포지셔닝 상세**: [docs/SSR_AND_SEO.md](./docs/SSR_AND_SEO.md)
 
 ### 현재 구조
+
 - React Router를 사용한 클라이언트 사이드 라우팅 (CSR)
 - SSR로 확장할 때 참고할 수 있는 설정 예시: `vite-ssr.config.ts`
 
 ### SSR/SSG 확장 시 참고 옵션
 
 #### 옵션 1: Vite SSR 플러그인 사용
+
 ```bash
 npm install vite-plugin-ssr
 ```
 
 #### 옵션 2: Next.js로 마이그레이션
+
 더 완전한 SSR/SSG 지원을 원할 경우 Next.js로 마이그레이션 고려
 
 #### 옵션 3: 커스텀 SSR 서버
+
 Node.js + Express를 사용한 커스텀 SSR 서버 구축
 
 ## API 호출 예시
 
 ### 기본 사용법
+
 ```typescript
 import { useApi } from '@/hooks/useApi'
 
@@ -45,11 +50,13 @@ function MyComponent() {
 ```
 
 ### 컴포넌트 언마운트 시 자동 중단
+
 `useApi()` 훅을 사용하면 해당 컴포넌트에서 시작한 요청에 공통 `AbortSignal`이 붙으며, 언마운트 시 자동으로 중단됩니다. 수동 중단이 필요하면 `AbortController`를 만들어 `get/post(..., { signal })`로 전달하면 됩니다.
 
 ## 폰트 크기 사용 예시
 
 ### Tailwind 클래스 사용
+
 ```typescript
 // ✅ 좋은 예
 <h1 className="text-5xl">제목</h1>        // 3rem
@@ -61,15 +68,17 @@ function MyComponent() {
 ```
 
 ### CSS 변수 사용
+
 ```css
 .my-text {
-  font-size: var(--font-base);  /* 1rem */
+  font-size: var(--font-base); /* 1rem */
 }
 ```
 
 ## 페이지 구조 예시
 
 ### SSG 페이지 (정적 콘텐츠)
+
 ```typescript
 // pages/StaticPage.tsx
 export default function StaticPage() {
@@ -85,6 +94,7 @@ export default function StaticPage() {
 ```
 
 ### SSR 페이지 (동적 콘텐츠)
+
 ```typescript
 // pages/DynamicPage.tsx
 import { useApi } from '@/hooks/useApi'
@@ -114,6 +124,7 @@ export default function DynamicPage() {
 ## SEO 최적화 예시
 
 ### 메타 태그 설정
+
 ```typescript
 import { useEffect } from 'react'
 import { setPageMeta } from '@/utils/seo'
@@ -140,4 +151,3 @@ export default function SEOOptimizedPage() {
 ## 작업 완료 후 확인
 
 작업 완료 후 체크리스트는 **[CODING_GUIDE.md](./CODING_GUIDE.md)**의 코드 리뷰 체크리스트를 참고하세요.
-

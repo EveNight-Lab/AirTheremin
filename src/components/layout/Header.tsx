@@ -2,7 +2,7 @@
  * 헤더 컴포넌트
  */
 
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   return (
@@ -13,22 +13,15 @@ export default function Header() {
             GDP
           </Link>
           <div className="flex gap-4">
-            <Link
-              to="/"
-              className="text-1rem text-gray-600 hover:text-gray-800"
-            >
+            <Link to="/" className="text-1rem text-gray-600 hover:text-gray-800">
               홈
             </Link>
-            <Link
-              to="/about"
-              className="text-1rem text-gray-600 hover:text-gray-800"
-            >
+            <Link to="/about" className="text-1rem text-gray-600 hover:text-gray-800">
               소개
             </Link>
           </div>
         </div>
       </nav>
     </header>
-  )
+  );
 }
-

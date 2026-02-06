@@ -3,6 +3,7 @@
 > **⚠️ 중요: 모든 코딩 작업 전에 이 문서를 반드시 확인하고 준수하세요.**
 
 ## 📋 목차
+
 1. [프로젝트 개요](#프로젝트-개요)
 2. [기술 스택](#기술-스택)
 3. [파일 구조 규칙](#파일-구조-규칙)
@@ -29,6 +30,7 @@
 ## 기술 스택
 
 ### 핵심 기술
+
 - **React**: 19.2.0 (최신 버전)
 - **TypeScript**: 5.9.3
 - **Vite**: 7.2.4
@@ -36,6 +38,7 @@
 - **라우팅**: React Router (SSR/SSG 지원)
 
 ### 주요 특징
+
 - React Compiler 활성화 (자동 최적화)
 - TypeScript 엄격 모드
 - ESLint 코드 품질 관리
@@ -47,6 +50,7 @@
 ## 파일 구조 규칙
 
 ### 디렉토리 구조
+
 ```
 gdp-front/
 ├── src/
@@ -72,6 +76,7 @@ gdp-front/
 ```
 
 ### 파일 네이밍 규칙
+
 - **컴포넌트**: PascalCase (예: `UserProfile.tsx`)
 - **유틸리티/훅**: camelCase (예: `useAuth.ts`, `formatDate.ts`)
 - **타입 정의**: PascalCase (예: `UserTypes.ts`)
@@ -82,36 +87,39 @@ gdp-front/
 ## 코딩 스타일
 
 ### 기본 원칙
+
 1. **일관성**: 프로젝트 전체에 걸쳐 일관된 스타일 유지
 2. **가독성**: 코드는 읽기 쉽고 이해하기 쉬워야 함
 3. **간결성**: 불필요한 코드 제거, 명확한 의도 표현
 4. **타입 안정성**: TypeScript의 타입 시스템 최대한 활용
 
 ### 코드 포맷팅
+
 - 들여쓰기: 2 spaces (탭 사용 금지)
 - 세미콜론: 사용 (ESLint 규칙 준수)
 - 따옴표: 작은따옴표(`'`) 사용
 - 줄 길이: 최대 100자 (가독성 고려)
 
 ### Import 순서
+
 ```typescript
 // 1. React 및 라이브러리
-import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 // 2. 타입 정의
-import type { User } from '@/types/User'
+import type { User } from '@/types/User';
 
 // 3. 컴포넌트
-import Button from '@/components/common/Button'
-import Header from '@/components/layout/Header'
+import Button from '@/components/common/Button';
+import Header from '@/components/layout/Header';
 
 // 4. 유틸리티/훅
-import { formatDate } from '@/utils/date'
-import { useAuth } from '@/hooks/useAuth'
+import { formatDate } from '@/utils/date';
+import { useAuth } from '@/hooks/useAuth';
 
 // 5. 스타일
-import './Component.css'
+import './Component.css';
 ```
 
 ---
@@ -119,6 +127,7 @@ import './Component.css'
 ## 컴포넌트 작성 규칙
 
 ### 함수형 컴포넌트 사용
+
 ```typescript
 // ✅ 좋은 예
 interface UserCardProps {
@@ -137,6 +146,7 @@ export default function UserCard({ name, email, avatar }: UserCardProps) {
 ```
 
 ### 컴포넌트 구조
+
 ```typescript
 // 1. Imports
 import { useState } from 'react'
@@ -151,17 +161,17 @@ interface Props {
 export default function Component({ ... }: Props) {
   // 4. Hooks
   const [state, setState] = useState()
-  
+
   // 5. Handlers
   const handleClick = () => {
     // ...
   }
-  
+
   // 6. Effects
   useEffect(() => {
     // ...
   }, [])
-  
+
   // 7. Render
   return (
     // JSX
@@ -170,11 +180,13 @@ export default function Component({ ... }: Props) {
 ```
 
 ### 컴포넌트 분리 원칙
+
 - **단일 책임 원칙**: 하나의 컴포넌트는 하나의 역할만 수행
 - **재사용성**: 3번 이상 사용되면 컴포넌트로 분리 고려
 - **크기 제한**: 컴포넌트는 200줄 이하로 유지 (가능한 한)
 
 ### Props 규칙
+
 - Props는 항상 TypeScript 인터페이스로 정의
 - 필수 props는 기본값 없이, 선택적 props는 `?` 사용
 - Props는 최대한 명확하고 구체적으로 네이밍
@@ -184,6 +196,7 @@ export default function Component({ ... }: Props) {
 ## 스타일링 규칙
 
 ### Tailwind CSS 우선 사용
+
 ```typescript
 // ✅ 좋은 예 - Tailwind 사용
 <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow-md">
@@ -192,9 +205,9 @@ export default function Component({ ... }: Props) {
 
 // ✅ 좋은 예 - 실무적으로 인라인 스타일이 더 적합한 경우
 // (동적 값, 복잡한 계산 등)
-<div style={{ 
+<div style={{
   transform: `translateX(${offset}px)`,
-  opacity: isVisible ? 1 : 0 
+  opacity: isVisible ? 1 : 0
 }}>
   {/* 내용 */}
 </div>
@@ -206,9 +219,11 @@ export default function Component({ ... }: Props) {
 ```
 
 ### 폰트 크기 규칙 (rem 기반)
+
 **⚠️ 필수: 모든 폰트 크기는 rem 단위를 사용하고, 제한된 rem 수치만 사용**
 
 #### 허용된 rem 수치 (제한적 사용)
+
 ```css
 /* 루트 폰트 크기: 16px (기본값) */
 :root {
@@ -239,17 +254,19 @@ export default function Component({ ... }: Props) {
 ```
 
 ### CSS 파일 사용 규칙
+
 - **전역 스타일**: `src/index.css`에만 작성
 - **컴포넌트별 CSS**: 가능한 한 Tailwind 사용, 필요시에만 별도 CSS 파일
 - **커스텀 클래스**: `tailwind.config.js`의 `theme.extend` 활용
 
 ### 반응형 디자인
+
 ```typescript
 // Tailwind 반응형 클래스 사용
 <div className="
-  w-full 
-  md:w-1/2 
-  lg:w-1/3 
+  w-full
+  md:w-1/2
+  lg:w-1/3
   xl:w-1/4
 ">
   {/* 내용 */}
@@ -257,6 +274,7 @@ export default function Component({ ... }: Props) {
 ```
 
 ### 다크모드 지원 (필요시)
+
 ```typescript
 <div className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
   {/* 내용 */}
@@ -268,13 +286,14 @@ export default function Component({ ... }: Props) {
 ## TypeScript 규칙
 
 ### 타입 정의
+
 ```typescript
 // ✅ 좋은 예 - 명시적 타입
 interface User {
-  id: number
-  name: string
-  email: string
-  createdAt: Date
+  id: number;
+  name: string;
+  email: string;
+  createdAt: Date;
 }
 
 // ❌ 나쁜 예 - any 사용
@@ -284,22 +303,24 @@ function processUser(user: any) {
 ```
 
 ### 타입 안전성
+
 - `any` 타입 사용 금지 (필수적인 경우 `unknown` 사용)
 - 타입 단언(`as`) 최소화, 타입 가드 활용
 - 옵셔널 체이닝(`?.`) 적극 활용
 
 ### 타입 파일 구조
+
 ```typescript
 // types/User.ts
 export interface User {
-  id: number
-  name: string
+  id: number;
+  name: string;
 }
 
-export type UserRole = 'admin' | 'user' | 'guest'
+export type UserRole = 'admin' | 'user' | 'guest';
 
 // types/index.ts에서 재export
-export * from './User'
+export * from './User';
 ```
 
 ---
@@ -307,16 +328,19 @@ export * from './User'
 ## 네이밍 컨벤션
 
 ### 변수 및 함수
+
 - **변수**: camelCase (예: `userName`, `isLoading`)
 - **함수**: camelCase, 동사로 시작 (예: `getUserData`, `handleSubmit`)
 - **상수**: UPPER_SNAKE_CASE (예: `API_BASE_URL`, `MAX_RETRY_COUNT`)
 - **Boolean**: `is`, `has`, `should` 접두사 사용 (예: `isVisible`, `hasError`)
 
 ### 컴포넌트
+
 - **컴포넌트명**: PascalCase (예: `UserProfile`, `NavigationBar`)
 - **파일명**: 컴포넌트명과 동일하게 (예: `UserProfile.tsx`)
 
 ### 이벤트 핸들러
+
 - `handle` 접두사 사용 (예: `handleClick`, `handleSubmit`)
 - 또는 `on` 접두사 (예: `onClick`, `onChange`)
 
@@ -325,6 +349,7 @@ export * from './User'
 ## Git 커밋 규칙
 
 ### 커밋 메시지 형식
+
 ```
 <type>: <subject>
 
@@ -334,6 +359,7 @@ export * from './User'
 ```
 
 ### Type 종류
+
 - `feat`: 새로운 기능 추가
 - `fix`: 버그 수정
 - `docs`: 문서 수정
@@ -343,6 +369,7 @@ export * from './User'
 - `chore`: 빌드 업무 수정, 패키지 매니저 설정 등
 
 ### 예시
+
 ```
 feat: 사용자 프로필 페이지 추가
 
@@ -360,6 +387,7 @@ Closes #123
 코딩 전/후 다음 항목들을 확인하세요:
 
 ### 필수 체크리스트
+
 - [ ] TypeScript 타입이 모든 변수/함수에 정의되어 있는가?
 - [ ] `any` 타입을 사용하지 않았는가?
 - [ ] ESLint 오류가 없는가?
@@ -369,6 +397,7 @@ Closes #123
 - [ ] 코드가 읽기 쉽고 이해하기 쉬운가?
 
 ### 권장 체크리스트
+
 - [ ] 컴포넌트가 200줄 이하인가?
 - [ ] 재사용 가능한 로직이 커스텀 훅으로 분리되었는가?
 - [ ] 에러 처리가 적절히 구현되었는가?
@@ -381,15 +410,18 @@ Closes #123
 ## 특별 주의사항
 
 ### React 19 특징 활용
+
 - React Compiler가 자동으로 최적화하므로, 불필요한 `useMemo`, `useCallback` 남용 금지
 - 새로운 Hooks API 적극 활용
 
 ### 성능 최적화
+
 - 큰 리스트는 가상화(virtualization) 고려
 - 이미지는 lazy loading 적용
 - 코드 스플리팅 적극 활용
 
 ### 보안
+
 - 사용자 입력은 항상 검증 및 sanitization
 - API 키는 환경 변수로 관리
 - XSS 방지를 위한 적절한 이스케이프 처리
@@ -401,6 +433,7 @@ Closes #123
 **기본 포지션**: 이 템플릿은 CSR이 기본이며, SSR/SEO 포지셔닝은 [docs/SSR_AND_SEO.md](./docs/SSR_AND_SEO.md)를 참고하세요.
 
 ### 페이지 분류 (SSR 도입 시 참고)
+
 1. **SSG (Static Site Generation)**: 정적 콘텐츠 페이지
    - 홈페이지, 소개 페이지, 정적 블로그 포스트 등
    - 빌드 시점에 HTML 생성
@@ -416,6 +449,7 @@ Closes #123
    - SEO가 중요하지 않은 페이지
 
 ### 구현 원칙
+
 ```typescript
 // ✅ 좋은 예 - SSG 페이지
 // pages/HomePage.tsx
@@ -446,6 +480,7 @@ export default function ArticlePage({ article }: { article: Article }) {
 ```
 
 ### 초기 HTML 텍스트 포함 규칙
+
 - **필수**: 모든 핵심 콘텐츠는 초기 HTML에 텍스트로 포함
 - 이미지 alt 텍스트 필수
 - 메타 태그 최적화 (title, description, og:tags)
@@ -455,52 +490,54 @@ export default function ArticlePage({ article }: { article: Article }) {
 ## API 호출 및 요청 규칙
 
 ### 강제 중단 기능 필수
+
 **⚠️ 필수: 모든 API 호출은 AbortController를 사용하여 중단 가능하도록 구현**
 
 ```typescript
 // ✅ 좋은 예 - AbortController 사용
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react';
 
 function useApiCall() {
-  const abortControllerRef = useRef<AbortController | null>(null)
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   const fetchData = async (url: string) => {
     // 이전 요청이 있으면 중단
     if (abortControllerRef.current) {
-      abortControllerRef.current.abort()
+      abortControllerRef.current.abort();
     }
 
     // 새로운 AbortController 생성
-    abortControllerRef.current = new AbortController()
+    abortControllerRef.current = new AbortController();
 
     try {
       const response = await fetch(url, {
-        signal: abortControllerRef.current.signal
-      })
-      return await response.json()
+        signal: abortControllerRef.current.signal,
+      });
+      return await response.json();
     } catch (error) {
       if (error instanceof Error && error.name === 'AbortError') {
-        console.log('Request aborted')
-        return null
+        console.log('Request aborted');
+        return null;
       }
-      throw error
+      throw error;
     }
-  }
+  };
 
   useEffect(() => {
     return () => {
       // 컴포넌트 언마운트 시 요청 중단
       if (abortControllerRef.current) {
-        abortControllerRef.current.abort()
+        abortControllerRef.current.abort();
       }
-    }
-  }, [])
+    };
+  }, []);
 
-  return { fetchData }
+  return { fetchData };
 }
 ```
 
 ### API 서비스 구조
+
 요청 단위로 `AbortController`를 사용합니다. 컴포넌트에서는 `useApi()` 훅을 쓰면 언마운트 시 해당 컴포넌트에서 시작한 요청이 자동 중단됩니다. 구현은 `src/utils/api.ts`, `src/hooks/useApi.ts`를 참고하세요.
 
 ---
@@ -508,22 +545,26 @@ function useApiCall() {
 ## 코드 최적화 규칙
 
 ### 중복 코드 제거
+
 - **DRY 원칙**: Don't Repeat Yourself
 - 공통 로직은 유틸리티 함수나 커스텀 훅으로 분리
 - 3번 이상 반복되는 코드는 반드시 추출
 
 ### 불필요한 코드 제거
+
 - 사용하지 않는 import 제거
 - 주석 처리된 코드 제거 (Git 히스토리로 관리)
 - console.log 제거 (개발용은 개발 환경에서만)
 - 사용하지 않는 변수/함수 제거
 
 ### 컴포넌트 최적화
+
 - 불필요한 리렌더링 방지 (React Compiler가 자동 처리)
 - 큰 컴포넌트는 작은 단위로 분리
 - Props drilling 방지 (Context 또는 상태 관리 라이브러리 활용)
 
 ### 코드 리뷰 시 확인사항
+
 - [ ] 중복된 코드가 없는가?
 - [ ] 사용하지 않는 import가 없는가?
 - [ ] 불필요한 console.log가 제거되었는가?
@@ -534,11 +575,13 @@ function useApiCall() {
 ## 작업 일지 관리
 
 ### 자동 작업 일지 생성
+
 **⚠️ 권장: 하루 작업이 끝날 때마다 작업 일지를 생성하고 업데이트하세요**
 
 프로젝트에는 Git 커밋 로그를 기반으로 자동으로 작업 일지를 생성하는 시스템이 포함되어 있습니다.
 
 #### 사용 방법
+
 ```bash
 # 오늘 날짜의 작업 일지 생성/업데이트
 npm run work-log
@@ -548,17 +591,21 @@ npm run work-log -- 2025-01-15
 ```
 
 #### 작업 일지 위치
+
 - 작업 일지 파일: `docs/work-logs/YYYY-MM-DD.md`
 - 상세 가이드: `docs/WORK_LOG_GUIDE.md`
 
 #### 자동 생성 기능
+
 - Git 커밋 메시지 자동 수집
 - 변경된 파일 목록 자동 생성
 - 커밋 해시, 작성자, 시간 정보 포함
 - 기존 내용 보존 (수동 작성 내용 유지)
 
 #### 작업 일지 구조
+
 각 작업 일지는 다음 섹션으로 구성됩니다:
+
 - 📋 작업 개요
 - ✅ 완료된 작업 (Git 커밋 기반 자동 생성)
 - 📝 변경된 파일 (Git 로그 기반 자동 생성)
@@ -574,6 +621,7 @@ npm run work-log -- 2025-01-15
 ## 참고 자료
 
 ### 프로젝트 내부 문서
+
 - [docs/PLAN.md](./docs/PLAN.md) — 기획·방향·요구사항
 - [docs/STRUCTURE.md](./docs/STRUCTURE.md) — 논리·책임 구조
 - [docs/STATE_FLOW.md](./docs/STATE_FLOW.md) — 상태 소유·전달·변경
@@ -583,6 +631,7 @@ npm run work-log -- 2025-01-15
 - [docs/REACT_PERFORMANCE_GUIDE.md](./docs/REACT_PERFORMANCE_GUIDE.md) — React 성능(실무 요약)
 
 ### 외부
+
 - [React 공식 문서](https://react.dev)
 - [TypeScript 핸드북](https://www.typescriptlang.org/docs/)
 - [Tailwind CSS 문서](https://tailwindcss.com/docs)
@@ -592,4 +641,3 @@ npm run work-log -- 2025-01-15
 
 **마지막 업데이트**: 2025-12-29
 **유지보수자**: 개발팀
-

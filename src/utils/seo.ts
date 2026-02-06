@@ -7,12 +7,12 @@
  */
 
 export interface SEOData {
-  title: string
-  description: string
-  keywords?: string[]
-  ogImage?: string
-  ogType?: string
-  canonicalUrl?: string
+  title: string;
+  description: string;
+  keywords?: string[];
+  ogImage?: string;
+  ogType?: string;
+  canonicalUrl?: string;
 }
 
 /**
@@ -22,27 +22,27 @@ export interface SEOData {
 export function setPageMeta(data: SEOData): void {
   // Title 설정
   if (document.title !== data.title) {
-    document.title = data.title
+    document.title = data.title;
   }
 
   // Meta description
-  let metaDescription = document.querySelector('meta[name="description"]')
+  let metaDescription = document.querySelector('meta[name="description"]');
   if (!metaDescription) {
-    metaDescription = document.createElement('meta')
-    metaDescription.setAttribute('name', 'description')
-    document.head.appendChild(metaDescription)
+    metaDescription = document.createElement('meta');
+    metaDescription.setAttribute('name', 'description');
+    document.head.appendChild(metaDescription);
   }
-  metaDescription.setAttribute('content', data.description)
+  metaDescription.setAttribute('content', data.description);
 
   // Meta keywords
   if (data.keywords && data.keywords.length > 0) {
-    let metaKeywords = document.querySelector('meta[name="keywords"]')
+    let metaKeywords = document.querySelector('meta[name="keywords"]');
     if (!metaKeywords) {
-      metaKeywords = document.createElement('meta')
-      metaKeywords.setAttribute('name', 'keywords')
-      document.head.appendChild(metaKeywords)
+      metaKeywords = document.createElement('meta');
+      metaKeywords.setAttribute('name', 'keywords');
+      document.head.appendChild(metaKeywords);
     }
-    metaKeywords.setAttribute('content', data.keywords.join(', '))
+    metaKeywords.setAttribute('content', data.keywords.join(', '));
   }
 
   // Open Graph tags
@@ -50,31 +50,31 @@ export function setPageMeta(data: SEOData): void {
     { property: 'og:title', content: data.title },
     { property: 'og:description', content: data.description },
     { property: 'og:type', content: data.ogType || 'website' },
-  ]
+  ];
 
   if (data.ogImage) {
-    ogTags.push({ property: 'og:image', content: data.ogImage })
+    ogTags.push({ property: 'og:image', content: data.ogImage });
   }
 
   ogTags.forEach(({ property, content }) => {
-    let ogTag = document.querySelector(`meta[property="${property}"]`)
+    let ogTag = document.querySelector(`meta[property="${property}"]`);
     if (!ogTag) {
-      ogTag = document.createElement('meta')
-      ogTag.setAttribute('property', property)
-      document.head.appendChild(ogTag)
+      ogTag = document.createElement('meta');
+      ogTag.setAttribute('property', property);
+      document.head.appendChild(ogTag);
     }
-    ogTag.setAttribute('content', content)
-  })
+    ogTag.setAttribute('content', content);
+  });
 
   // Canonical URL
   if (data.canonicalUrl) {
-    let canonical = document.querySelector('link[rel="canonical"]')
+    let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
-      canonical = document.createElement('link')
-      canonical.setAttribute('rel', 'canonical')
-      document.head.appendChild(canonical)
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
     }
-    canonical.setAttribute('href', data.canonicalUrl)
+    canonical.setAttribute('href', data.canonicalUrl);
   }
 }
 
@@ -82,11 +82,11 @@ export function setPageMeta(data: SEOData): void {
  * 초기 HTML에 포함될 구조화된 데이터 생성
  */
 export function generateStructuredData(data: {
-  type: 'Article' | 'WebPage' | 'Organization'
-  name: string
-  description: string
-  url?: string
-  image?: string
+  type: 'Article' | 'WebPage' | 'Organization';
+  name: string;
+  description: string;
+  url?: string;
+  image?: string;
 }): string {
   const structuredData = {
     '@context': 'https://schema.org',
@@ -95,8 +95,7 @@ export function generateStructuredData(data: {
     description: data.description,
     ...(data.url && { url: data.url }),
     ...(data.image && { image: data.image }),
-  }
+  };
 
-  return JSON.stringify(structuredData)
+  return JSON.stringify(structuredData);
 }
-

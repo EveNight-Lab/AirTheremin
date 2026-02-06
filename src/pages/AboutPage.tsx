@@ -12,7 +12,8 @@ export default function AboutPage() {
           이 페이지는 정적 사이트 생성(SSG)을 통해 빌드 시점에 HTML로 생성됩니다.
         </p>
         <p className="text-1rem text-gray-600 mb-4">
-          모든 텍스트 콘텐츠는 초기 HTML에 포함되어 있어 SEO와 애드센스 크롤링에 최적화되어 있습니다.
+          모든 텍스트 콘텐츠는 초기 HTML에 포함되어 있어 SEO와 애드센스 크롤링에 최적화되어
+          있습니다.
         </p>
         <section className="mt-8">
           <h2 className="text-3xl font-bold mb-4 text-gray-800">주요 특징</h2>
@@ -25,6 +26,5 @@ export default function AboutPage() {
         </section>
       </div>
     </div>
-  )
+  );
 }
-

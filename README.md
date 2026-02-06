@@ -32,16 +32,16 @@ npm run format:check  # 포맷 검사 (CI)
 
 ## 가이드 문서 (한 곳에서 보기)
 
-| 문서 | 용도 |
-|------|------|
-| [CODING_GUIDE.md](./CODING_GUIDE.md) | **필수** 코딩 규칙·스타일·체크리스트 |
-| [IMPLEMENTATION_GUIDE.md](./IMPLEMENTATION_GUIDE.md) | 구현 예시(API, 폰트, SEO, 페이지) |
-| [docs/WORK_LOG_GUIDE.md](./docs/WORK_LOG_GUIDE.md) | 작업 일지 사용법 |
-| [docs/SSR_AND_SEO.md](./docs/SSR_AND_SEO.md) | SSR/SEO 포지셔닝 |
-| [docs/REACT_PERFORMANCE_GUIDE.md](./docs/REACT_PERFORMANCE_GUIDE.md) | React 성능(실무) |
-| [docs/PLAN.md](./docs/PLAN.md) | 기획·방향·요구사항 (프로젝트 시작 시 채움) |
-| [docs/STRUCTURE.md](./docs/STRUCTURE.md) | 논리·책임 구조 (사람+AI 지도) |
-| [docs/STATE_FLOW.md](./docs/STATE_FLOW.md) | 상태 소유·전달·변경 (AI용 제어판) |
+| 문서                                                                 | 용도                                       |
+| -------------------------------------------------------------------- | ------------------------------------------ |
+| [CODING_GUIDE.md](./CODING_GUIDE.md)                                 | **필수** 코딩 규칙·스타일·체크리스트       |
+| [IMPLEMENTATION_GUIDE.md](./IMPLEMENTATION_GUIDE.md)                 | 구현 예시(API, 폰트, SEO, 페이지)          |
+| [docs/WORK_LOG_GUIDE.md](./docs/WORK_LOG_GUIDE.md)                   | 작업 일지 사용법                           |
+| [docs/SSR_AND_SEO.md](./docs/SSR_AND_SEO.md)                         | SSR/SEO 포지셔닝                           |
+| [docs/REACT_PERFORMANCE_GUIDE.md](./docs/REACT_PERFORMANCE_GUIDE.md) | React 성능(실무)                           |
+| [docs/PLAN.md](./docs/PLAN.md)                                       | 기획·방향·요구사항 (프로젝트 시작 시 채움) |
+| [docs/STRUCTURE.md](./docs/STRUCTURE.md)                             | 논리·책임 구조 (사람+AI 지도)              |
+| [docs/STATE_FLOW.md](./docs/STATE_FLOW.md)                           | 상태 소유·전달·변경 (AI용 제어판)          |
 
 ## 프로젝트 구조 요약
 

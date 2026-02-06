@@ -3,9 +3,9 @@
  * 모든 페이지에 공통으로 적용되는 레이아웃
  */
 
-import { Outlet } from 'react-router-dom'
-import Header from './Header'
-import Footer from './Footer'
+import { Outlet } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
 
 export default function Layout() {
   return (
@@ -16,6 +16,5 @@ export default function Layout() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }
-
