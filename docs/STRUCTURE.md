@@ -10,6 +10,7 @@ It is not a snapshot of the current file tree.
 This document describes the **logical and responsibility-based structure** of the project.
 
 It does **not** define:
+
 - state ownership
 - data flow
 - hook-level implementation details
@@ -19,10 +20,12 @@ Those concerns are defined separately in **STATE_FLOW.md**.
 ---
 
 **Purpose:**
+
 - **For humans:** Quick grasp of the whole; "what is this project divided into?", "why does this file exist?", "where are the responsibility boundaries?"
 - **For AI:** Decide "which area?", "is it okay to touch this file?" — a **map** by domain / feature / responsibility.
 
 All future projects based on this repository must:
+
 - define their structure here before major implementation
 - keep this document in sync when **responsibility or boundaries** change
 - treat this document as the source of truth for **logical structure** (state/flow → STATE_FLOW.md)
@@ -47,13 +50,16 @@ Each significant file or module is described with the following. Fill in as the 
 ### `FileName` or `ModuleName`
 
 **Role**
+
 - What responsibility this file owns (human-readable)
 - Why it exists; responsibility boundary
 
 **Exports**
+
 - Components / functions exported from this file
 
 **Dependencies**
+
 - Depends on (imports from)
 - Depended on by (known consumers)
 

@@ -42,6 +42,7 @@ npm run format:check  # 포맷 검사 (CI)
 | [docs/PLAN.md](./docs/PLAN.md)                                       | 기획·방향·요구사항 (프로젝트 시작 시 채움) |
 | [docs/STRUCTURE.md](./docs/STRUCTURE.md)                             | 논리·책임 구조 (사람+AI 지도)              |
 | [docs/STATE_FLOW.md](./docs/STATE_FLOW.md)                           | 상태 소유·전달·변경 (AI용 제어판)          |
+| [docs/DESIGN.md](./docs/DESIGN.md)                                   | UI 컨셉·토큰·컴포넌트 스타일 규칙(디자인)  |
 
 ## 프로젝트 구조 요약
 

@@ -9,6 +9,7 @@ This document defines **state ownership and flow** for the project.
 This document defines **state ownership and flow**.
 
 It is written primarily for:
+
 - preventing accidental state duplication
 - guiding AI-driven implementation
 - validating structural consistency
@@ -29,6 +30,7 @@ For logical structure and responsibility → see **STRUCTURE.md**.
 - **Hooks** that own or consume this state (at the level needed for "where to implement")
 
 What does **not** belong here:
+
 - UI / domain stories for humans
 - Detailed "why we built this feature" narrative
 
@@ -41,24 +43,31 @@ Fill in per state tree or per module as the project grows.
 ### State or module identifier
 
 **Declared in**
+
 - File / hook / store
 
 **Source of truth**
+
 - This module vs derived elsewhere
 
 **Updated by (events / triggers)**
+
 - User action, effect, subscription, etc.
 
 **Flows down to**
+
 - Components / hooks that receive via props or context
 
 **Read-only consumers**
+
 - Components that only read, never set
 
 **Side effects**
+
 - API calls, storage, timers, subscriptions that read or write this state
 
 **Hooks involved**
+
 - useState, useReducer, custom hooks that own or consume this state
 
 ---

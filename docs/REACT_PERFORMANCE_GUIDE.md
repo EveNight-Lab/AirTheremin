@@ -15,16 +15,16 @@
 
 ## 2. 우선순위 요약
 
-| 순위 | 분류 | 영향도 | 실무에서 먼저 할 것 |
-|------|------|--------|---------------------|
-| 1 | 워터폴 제거 | CRITICAL | 독립 비동기는 `Promise.all`, 연쇄 await 지양 |
-| 2 | 번들 크기 | CRITICAL | barrel import 지양, 직접 import·동적 import |
-| 3 | 서버 성능 | HIGH | SSR 시 캐시·병렬 fetch (현재 템플릿은 CSR) |
-| 4 | 클라이언트 fetch | MEDIUM-HIGH | 요청 중복 제거(SWR 등), 이벤트 리스너 정리 |
-| 5 | 리렌더 최적화 | MEDIUM | 파생값은 렌더 시 계산, useState 초기값은 함수형 |
-| 6 | 렌더링 | MEDIUM | 조건부 렌더는 삼항 연산자, 무거운 건 lazy |
-| 7 | JS 미세 최적화 | LOW-MEDIUM | 반복문 내 객체 접근·정규식 캐싱, Set/Map 활용 |
-| 8 | 고급 패턴 | LOW | 이벤트 핸들러 ref, 초기화 1회 등 |
+| 순위 | 분류             | 영향도      | 실무에서 먼저 할 것                             |
+| ---- | ---------------- | ----------- | ----------------------------------------------- |
+| 1    | 워터폴 제거      | CRITICAL    | 독립 비동기는 `Promise.all`, 연쇄 await 지양    |
+| 2    | 번들 크기        | CRITICAL    | barrel import 지양, 직접 import·동적 import     |
+| 3    | 서버 성능        | HIGH        | SSR 시 캐시·병렬 fetch (현재 템플릿은 CSR)      |
+| 4    | 클라이언트 fetch | MEDIUM-HIGH | 요청 중복 제거(SWR 등), 이벤트 리스너 정리      |
+| 5    | 리렌더 최적화    | MEDIUM      | 파생값은 렌더 시 계산, useState 초기값은 함수형 |
+| 6    | 렌더링           | MEDIUM      | 조건부 렌더는 삼항 연산자, 무거운 건 lazy       |
+| 7    | JS 미세 최적화   | LOW-MEDIUM  | 반복문 내 객체 접근·정규식 캐싱, Set/Map 활용   |
+| 8    | 고급 패턴        | LOW         | 이벤트 핸들러 ref, 초기화 1회 등                |
 
 ---
 
@@ -36,16 +36,12 @@
 
 ```ts
 // ❌ 순차 (지연 3배)
-const user = await fetchUser()
-const posts = await fetchPosts()
-const comments = await fetchComments()
+const user = await fetchUser();
+const posts = await fetchPosts();
+const comments = await fetchComments();
 
 // ✅ 병렬
-const [user, posts, comments] = await Promise.all([
-  fetchUser(),
-  fetchPosts(),
-  fetchComments(),
-])
+const [user, posts, comments] = await Promise.all([fetchUser(), fetchPosts(), fetchComments()]);
 ```
 
 - [규칙: async-parallel](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/async-parallel.md)
@@ -59,11 +55,11 @@ const [user, posts, comments] = await Promise.all([
 
 ```tsx
 // ❌ barrel – lucide, MUI 등에서 수백~수천 모듈 로드
-import { Check, X, Menu } from 'lucide-react'
+import { Check, X, Menu } from 'lucide-react';
 
 // ✅ 직접 import
-import Check from 'lucide-react/dist/esm/icons/check'
-import Button from '@mui/material/Button'
+import Check from 'lucide-react/dist/esm/icons/check';
+import Button from '@mui/material/Button';
 ```
 
 - [규칙: bundle-barrel-imports](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/bundle-barrel-imports.md)
@@ -78,20 +74,22 @@ import Button from '@mui/material/Button'
 ```tsx
 // ❌ 컴포넌트마다 fetch
 function UserList() {
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([]);
   useEffect(() => {
-    fetch('/api/users').then(r => r.json()).then(setUsers)
-  }, [])
+    fetch('/api/users')
+      .then((r) => r.json())
+      .then(setUsers);
+  }, []);
 }
 
 // ✅ SWR로 캐시·디듀프
-import useSWR from 'swr'
+import useSWR from 'swr';
 function UserList() {
-  const { data: users } = useSWR('/api/users', fetcher)
+  const { data: users } = useSWR('/api/users', fetcher);
 }
 ```
 
-- [규칙: client-swr-dedup](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/client-swr-dedup.md)  
+- [규칙: client-swr-dedup](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/client-swr-dedup.md)
 - 이 템플릿의 `useApi()`는 AbortSignal만 공유; 요청 디듀프가 필요하면 SWR/React Query 도입 검토.
 
 ---
@@ -102,13 +100,13 @@ props/state로 계산 가능한 값은 state나 effect에 넣지 말고 렌더 �
 
 ```tsx
 // ❌ effect로 동기화 → 불필요 리렌더·드리프트 위험
-const [fullName, setFullName] = useState('')
+const [fullName, setFullName] = useState('');
 useEffect(() => {
-  setFullName(firstName + ' ' + lastName)
-}, [firstName, lastName])
+  setFullName(firstName + ' ' + lastName);
+}, [firstName, lastName]);
 
 // ✅ 렌더 시 파생
-const fullName = firstName + ' ' + lastName
+const fullName = firstName + ' ' + lastName;
 ```
 
 - [규칙: rerender-derived-state-no-effect](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/rerender-derived-state-no-effect.md)
@@ -122,12 +120,14 @@ const fullName = firstName + ' ' + lastName
 
 ```tsx
 // ❌ 매 렌더마다 실행
-const [searchIndex, setSearchIndex] = useState(buildSearchIndex(items))
-const [settings, setSettings] = useState(JSON.parse(localStorage.getItem('settings') || '{}'))
+const [searchIndex, setSearchIndex] = useState(buildSearchIndex(items));
+const [settings, setSettings] = useState(JSON.parse(localStorage.getItem('settings') || '{}'));
 
 // ✅ 마운트 시 1회만
-const [searchIndex, setSearchIndex] = useState(() => buildSearchIndex(items))
-const [settings, setSettings] = useState(() => JSON.parse(localStorage.getItem('settings') || '{}'))
+const [searchIndex, setSearchIndex] = useState(() => buildSearchIndex(items));
+const [settings, setSettings] = useState(() =>
+  JSON.parse(localStorage.getItem('settings') || '{}')
+);
 ```
 
 - [규칙: rerender-lazy-state-init](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/rerender-lazy-state-init.md)
@@ -140,10 +140,14 @@ const [settings, setSettings] = useState(() => JSON.parse(localStorage.getItem('
 
 ```tsx
 // ❌ count가 0이면 "0" 렌더
-{count && <span className="badge">{count}</span>}
+{
+  count && <span className="badge">{count}</span>;
+}
 
 // ✅
-{count > 0 ? <span className="badge">{count}</span> : null}
+{
+  count > 0 ? <span className="badge">{count}</span> : null;
+}
 ```
 
 - [규칙: rendering-conditional-render](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/rendering-conditional-render.md)
@@ -154,16 +158,16 @@ const [settings, setSettings] = useState(() => JSON.parse(localStorage.getItem('
 
 필요할 때만 해당 규칙 파일을 열어서 참고하면 됩니다.
 
-| 접두사 | 분류 | 대표 규칙 |
-|--------|------|-----------|
-| `async-` | 워터폴 제거 | [async-parallel](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/async-parallel.md), [async-defer-await](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/async-defer-await.md), [async-suspense-boundaries](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/async-suspense-boundaries.md) |
-| `bundle-` | 번들 | [bundle-barrel-imports](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/bundle-barrel-imports.md), [bundle-dynamic-imports](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/bundle-dynamic-imports.md), [bundle-conditional](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/bundle-conditional.md) |
-| `server-` | 서버(SSR 시) | [server-parallel-fetching](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/server-parallel-fetching.md), [server-cache-react](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/server-cache-react.md) |
-| `client-` | 클라이언트 | [client-swr-dedup](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/client-swr-dedup.md), [client-event-listeners](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/client-event-listeners.md) |
-| `rerender-` | 리렌더 | [rerender-derived-state-no-effect](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/rerender-derived-state-no-effect.md), [rerender-memo](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/rerender-memo.md), [rerender-lazy-state-init](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/rerender-lazy-state-init.md) |
-| `rendering-` | 렌더링 | [rendering-conditional-render](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/rendering-conditional-render.md), [rendering-content-visibility](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/rendering-content-visibility.md) |
-| `js-` | JS | [js-cache-property-access](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/js-cache-property-access.md), [js-set-map-lookups](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/js-set-map-lookups.md) |
-| `advanced-` | 고급 | [advanced-init-once](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/advanced-init-once.md) |
+| 접두사       | 분류         | 대표 규칙                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ------------ | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `async-`     | 워터폴 제거  | [async-parallel](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/async-parallel.md), [async-defer-await](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/async-defer-await.md), [async-suspense-boundaries](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/async-suspense-boundaries.md)                           |
+| `bundle-`    | 번들         | [bundle-barrel-imports](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/bundle-barrel-imports.md), [bundle-dynamic-imports](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/bundle-dynamic-imports.md), [bundle-conditional](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/bundle-conditional.md)                 |
+| `server-`    | 서버(SSR 시) | [server-parallel-fetching](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/server-parallel-fetching.md), [server-cache-react](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/server-cache-react.md)                                                                                                                                                        |
+| `client-`    | 클라이언트   | [client-swr-dedup](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/client-swr-dedup.md), [client-event-listeners](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/client-event-listeners.md)                                                                                                                                                                |
+| `rerender-`  | 리렌더       | [rerender-derived-state-no-effect](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/rerender-derived-state-no-effect.md), [rerender-memo](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/rerender-memo.md), [rerender-lazy-state-init](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/rerender-lazy-state-init.md) |
+| `rendering-` | 렌더링       | [rendering-conditional-render](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/rendering-conditional-render.md), [rendering-content-visibility](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/rendering-content-visibility.md)                                                                                                                            |
+| `js-`        | JS           | [js-cache-property-access](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/js-cache-property-access.md), [js-set-map-lookups](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/js-set-map-lookups.md)                                                                                                                                                        |
+| `advanced-`  | 고급         | [advanced-init-once](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/rules/advanced-init-once.md)                                                                                                                                                                                                                                                                                                         |
 
 전체 목록·설명은 [SKILL.md](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/SKILL.md) 참고.
 
