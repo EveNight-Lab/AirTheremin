@@ -1,27 +1,11 @@
 # DESIGN.md
 
-This document defines the **UI / UX design contract** for projects based on this repository.
-It is not a screenshot archive.
+디자인 철학·토큰·컴포넌트 스타일 규칙·참고 코드(Stitch 등)를 작성한다.
+작성 규칙은 [DESIGN_SPEC.md](./specs/DESIGN_SPEC.md)를 따른다.
 
 ---
 
-## Document Scope
-
-This document covers:
-
-- UI concept / tone
-- design tokens (color, typography, spacing)
-- component styling rules (variants, states)
-- interaction / motion guidelines (at a high level)
-
-It does **not** cover:
-
-- logical structure and responsibility (→ STRUCTURE.md)
-- state ownership and flow (→ STATE_FLOW.md)
-
----
-
-## UI Concept
+## 디자인 철학·톤
 
 - **Keywords**:
 - **Target vibe**:
@@ -29,9 +13,16 @@ It does **not** cover:
 
 ---
 
-## Color Palette
+## 참고 코드·에셋 (Stitch 등)
 
-Define tokens and when to use them. Keep tokens stable; change usage rules before changing tokens.
+```text
+<출처/버전/날짜>
+<코드 또는 토큰 스니펫>
+```
+
+---
+
+## Color Palette
 
 - **Brand / Primary**:
 - **Neutral**:
@@ -45,16 +36,14 @@ Define tokens and when to use them. Keep tokens stable; change usage rules befor
 
 ## Typography
 
-Keep aligned with the project’s rem rules.
-
 - **Font families**:
-- **Base size**:
+- **Base size** (rem 규칙과 정렬):
 - **Scale**:
 - **Line height**:
 
 ---
 
-## Spacing & Layout
+## Spacing & Layout (디자인 토큰 수준)
 
 - **Spacing scale**:
 - **Radius scale**:
@@ -89,12 +78,3 @@ Keep aligned with the project’s rem rules.
 - Loading patterns:
 - Empty states:
 - Error states:
-
----
-
-## AI Usage Rules
-
-1. Before making UI/UX changes, check whether relevant rules/tokens are defined here.
-2. If UI decisions are ambiguous, propose updates to DESIGN.md before implementing.
-3. When UI tokens or component styling rules change, update DESIGN.md in the same task.
-4. Update only when needed — not on every UI code change.

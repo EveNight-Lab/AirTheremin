@@ -1,99 +1,44 @@
 # STATE_FLOW.md
 
-This document defines **state ownership and flow** for the project.
+AI가 상태·흐름·파일 작업 지도를 유지하는 문서.
+작성 규칙은 [STATE_FLOW_SPEC.md](./specs/STATE_FLOW_SPEC.md)를 따른다.
 
 ---
 
-## Document Scope
+## 0) 빠른 라우팅 맵 (항상 최상단 유지)
 
-This document defines **state ownership and flow**.
-
-It is written primarily for:
-
-- preventing accidental state duplication
-- guiding AI-driven implementation
-- validating structural consistency
-
-**UI structure and visual hierarchy are intentionally omitted.**  
-For logical structure and responsibility → see **STRUCTURE.md**.
+| 지시/키워드 | 1차 Read | 1차 Change | 2차 후보 |
+| ----------- | -------- | ---------- | --------- |
+| | | | |
 
 ---
 
-## What Belongs Here
+## 1) 파일 인벤토리 (핵심)
 
-- Where state is **declared** (which file / module)
-- Who is **source of truth** for each piece of state
-- Which **events** change which state
-- Where state **flows down** to (props, context)
-- Which components **only read** (no setState)
-- **Side effects** that read/write state (API, storage, timers, subscriptions)
-- **Hooks** that own or consume this state (at the level needed for "where to implement")
-
-What does **not** belong here:
-
-- UI / domain stories for humans
-- Detailed "why we built this feature" narrative
+| File | Owns state | Sets/updates | Reads/consumes | Hooks | Side effects | Related IDs |
+| ---- | ---------- | ------------ | -------------- | ----- | ------------ | ----------- |
+| | | | | | | |
 
 ---
 
-## State / Module Flow Template
+## 2) 상태·훅 흐름 블록 (필요 최소만)
 
-Fill in per state tree or per module as the project grows.
+### `<기능 또는 상태 묶음 ID>`
 
-### State or module identifier
-
-**Declared in**
-
-- File / hook / store
-
-**Source of truth**
-
-- This module vs derived elsewhere
-
-**Updated by (events / triggers)**
-
-- User action, effect, subscription, etc.
-
-**Flows down to**
-
-- Components / hooks that receive via props or context
-
-**Read-only consumers**
-
-- Components that only read, never set
-
-**Side effects**
-
-- API calls, storage, timers, subscriptions that read or write this state
-
-**Hooks involved**
-
-- useState, useReducer, custom hooks that own or consume this state
+- **Source of truth**: `src/...`
+- **Updated by**: `...`
+- **Flows to**: `...`
+- **Read-only consumers**: `...`
+- **Side effects**: `...`
+- **Read first**: `...`
+- **Change first**: `...`
 
 ---
 
-## AI Usage Rules
+## 3) 작업 후 갱신 체크 (AI용)
 
-**Update only when needed.** No need to update this document on every code change — only when **state ownership or flow** actually changes.
-
-1. **Before adding or moving state:**
-   - Check STATE_FLOW.md for existing owner and flow.
-   - If not defined, propose an update to STATE_FLOW.md before writing code.
-
-2. **When changing where state lives or how it flows:**
-   - Update STATE_FLOW.md when that change happens.
-
-3. **When STATE_FLOW.md and code disagree:**
-   - Treat STATE_FLOW.md as the contract; align code or propose a STATE_FLOW.md update.
-
-4. **Use this document to decide:**
-   - "Should this state be created here?" → see Declared in / Source of truth.
-   - "Is this change a structural change?" → if state ownership or flow changes, yes.
-
----
-
-## Priority
-
-For **state ownership and flow**:
-
-**STATE_FLOW.md > Implementation Guides > Source Code**
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]

@@ -623,9 +623,10 @@ npm run work-log -- 2025-01-15
 ### 프로젝트 내부 문서
 
 - [docs/PLAN.md](./docs/PLAN.md) — 기획·방향·요구사항
-- [docs/STRUCTURE.md](./docs/STRUCTURE.md) — 논리·책임 구조
-- [docs/STATE_FLOW.md](./docs/STATE_FLOW.md) — 상태 소유·전달·변경
-- [docs/DESIGN.md](./docs/DESIGN.md) — UI 컨셉·토큰·컴포넌트 스타일 규칙
+- [docs/STRUCTURE.md](./docs/STRUCTURE.md) — UI 영역·배치·대략 비율(레이아웃)
+- [docs/FUNCTION.md](./docs/FUNCTION.md) — 요소별 기능·동작
+- [docs/DESIGN.md](./docs/DESIGN.md) — 디자인 철학·토큰·참고 코드(Stitch 등)
+- [docs/STATE_FLOW.md](./docs/STATE_FLOW.md) — 상태·흐름·파일 작업 지도 (주로 AI 유지)
 - [IMPLEMENTATION_GUIDE.md](./IMPLEMENTATION_GUIDE.md) — 구현 예시(API, 폰트, SEO, 페이지)
 - [docs/WORK_LOG_GUIDE.md](./docs/WORK_LOG_GUIDE.md) — 작업 일지 사용법
 - [docs/SSR_AND_SEO.md](./docs/SSR_AND_SEO.md) — SSR/SEO 포지셔닝
