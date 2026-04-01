@@ -42,7 +42,7 @@ npm run format:check  # 포맷 검사 (CI)
 | [docs/PLAN.md](./docs/PLAN.md)                                       | 기획·방향·요구사항                         |
 | [docs/STRUCTURE.md](./docs/STRUCTURE.md)                             | UI 영역·배치·대략 비율(레이아웃)           |
 | [docs/FUNCTION.md](./docs/FUNCTION.md)                               | STRUCTURE ID 기준 요소별 기능·동작         |
-| [docs/DESIGN.md](./docs/DESIGN.md)                                   | 디자인 철학·토큰·Stitch 등 참고 코드     |
+| [docs/DESIGN.md](./docs/DESIGN.md)                                   | 디자인 철학·토큰·Stitch 등 참고 코드       |
 | [docs/STATE_FLOW.md](./docs/STATE_FLOW.md)                           | 상태·흐름·파일 작업 지도 (주로 AI 유지)    |
 | [docs/DOCS_SPEC.md](./docs/DOCS_SPEC.md)                             | 문서 작성 규칙 인덱스 (`docs/specs/` 참조) |
 

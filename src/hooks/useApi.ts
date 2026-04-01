@@ -31,7 +31,6 @@ export interface UseApiReturn {
 
 export function useApi(): UseApiReturn {
   const signal = useAbortSignal();
-
   return useMemo(
     (): UseApiReturn => ({
       get: (url, options) => apiService.get(url, { ...options, signal: options?.signal ?? signal }),

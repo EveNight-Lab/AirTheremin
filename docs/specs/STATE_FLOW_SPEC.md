@@ -39,9 +39,9 @@ AI가 상태/훅/부수효과와 Read/Change 파일 지도를 유지.
 
 ## 권장 예문
 
-| 지시/키워드 | 1차 Read | 1차 Change | 2차 후보 |
-| ----------- | -------- | ---------- | --------- |
-| 목록 필터 | `src/pages/ListPage.tsx` | `src/hooks/useListFilter.ts` | `src/components/ListFilterBar.tsx` |
+| 지시/키워드 | 1차 Read                 | 1차 Change                   | 2차 후보                           |
+| ----------- | ------------------------ | ---------------------------- | ---------------------------------- |
+| 목록 필터   | `src/pages/ListPage.tsx` | `src/hooks/useListFilter.ts` | `src/components/ListFilterBar.tsx` |
 
 체크리스트 예문:
 
