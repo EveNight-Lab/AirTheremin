@@ -363,6 +363,7 @@ export * from './User';
 - 이 저장소는 한글 커밋을 허용합니다.
 - 단, `git commit -m "한글..."`은 금지하고 `git commit -F` 기반으로만 커밋합니다.
 - 표준 절차는 `commit-msg.txt`(UTF-8) 작성 후 `.\scripts\commit-utf8.ps1` 실행입니다.
+- `commit-msg.txt`는 에디터에서 직접 저장합니다. (터미널 heredoc/echo로 메시지 생성 금지)
 - 푸시 작업 시에도 동일 절차로 커밋 완료 후 푸시합니다.
 
 ### 한글 커밋 표준 절차
