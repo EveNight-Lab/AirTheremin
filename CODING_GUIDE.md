@@ -358,6 +358,29 @@ export * from './User';
 <footer>
 ```
 
+### 인코딩 안전 규칙 (중요)
+
+- 이 저장소는 한글 커밋을 허용합니다.
+- 단, `git commit -m "한글..."`은 금지하고 `git commit -F` 기반으로만 커밋합니다.
+- 표준 절차는 `commit-msg.txt`(UTF-8) 작성 후 `.\scripts\commit-utf8.ps1` 실행입니다.
+- 푸시 작업 시에도 동일 절차로 커밋 완료 후 푸시합니다.
+
+### 한글 커밋 표준 절차
+
+```powershell
+# 1) 커밋 메시지 작성 (UTF-8)
+# commit-msg.txt 파일에 제목/본문 작성
+
+# 2) 변경 스테이징
+git add ...
+
+# 3) UTF-8 커밋 스크립트 실행 (git commit -F 내부 수행)
+.\scripts\commit-utf8.ps1
+
+# 4) 푸시
+git push
+```
+
 ### Type 종류
 
 - `feat`: 새로운 기능 추가
@@ -370,12 +393,12 @@ export * from './User';
 
 ### 예시
 
-```
+```text
 feat: 사용자 프로필 페이지 추가
 
 - 사용자 정보 표시 컴포넌트 구현
 - API 연동 및 에러 처리 추가
-- 반응형 디자인 적용
+- 반응형 레이아웃 적용
 
 Closes #123
 ```

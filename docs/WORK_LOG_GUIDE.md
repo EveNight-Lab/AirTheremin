@@ -143,7 +143,8 @@ npm run work-log
 
 # 3. Git에 커밋
 git add docs/work-logs/2025-01-15.md
-git commit -m "docs: 작업 일지 추가"
+# commit-msg.txt(UTF-8) 작성 후
+./scripts/commit-utf8.ps1
 ```
 
 ### 시나리오 2: 특정 날짜 작업 정리
@@ -175,13 +176,16 @@ npm run work-log -- 2025-01-19
 
 ```bash
 # ✅ 좋은 예
-git commit -m "feat: 사용자 로그인 기능 구현"
-git commit -m "fix: API 에러 처리 개선"
-git commit -m "refactor: 컴포넌트 구조 개선"
+# commit-msg.txt(UTF-8)에 아래처럼 작성
+# feat: 사용자 로그인 기능 구현
+# fix: API 에러 처리 개선
+# refactor: 컴포넌트 구조 개선
+# 그리고 ./scripts/commit-utf8.ps1 실행
 
 # ❌ 나쁜 예
-git commit -m "수정"
-git commit -m "업데이트"
+# commit-msg.txt 제목이 너무 모호한 경우
+# 수정
+# 업데이트
 ```
 
 ### 2. 작업 일지 커밋
@@ -190,7 +194,8 @@ git commit -m "업데이트"
 
 ```bash
 git add docs/work-logs/
-git commit -m "docs: 작업 일지 업데이트"
+# commit-msg.txt(UTF-8) 작성 후
+./scripts/commit-utf8.ps1
 ```
 
 ### 3. 정기적인 업데이트
