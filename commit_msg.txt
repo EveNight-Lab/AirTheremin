@@ -1,0 +1,5 @@
+로컬 자동 검사 시스템(Husky) 도입 및 프로젝트 최종 마무리
+
+- Husky를 통한 pre-push hook 설정 (lint, format, build 자동 검사)
+- package.json에 ci:local 스크립트 추가
+- 프로젝트 베이스 안정성 검증 완료
