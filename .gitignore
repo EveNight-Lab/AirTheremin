@@ -25,3 +25,7 @@ dist-ssr
 
 # UTF-8 commit message draft
 /commit-msg.txt
+
+# Antigravity AI configurations
+.antigravity/
+.antigravityrules
