@@ -1,11 +1,12 @@
-/**
- * 메인 App 컴포넌트
- * 라우터를 통한 페이지 라우팅 처리
- */
-
+import { useEffect } from 'react';
 import AppRouter from './router';
+import { trackVisitor } from './utils/visitorTracker';
 
 function App() {
+  useEffect(() => {
+    void trackVisitor();
+  }, []);
+
   return <AppRouter />;
 }
 
