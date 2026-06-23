@@ -36,6 +36,16 @@ export const trackVisitor = async () => {
   const sessionKey = 'evenight_visit_tracked_airtheremin';
   if (sessionStorage.getItem(sessionKey)) return;
 
+  // 개발 환경(localhost) 또는 Vite 개발 모드에서는 카운트 증가 제외
+  if (
+    window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1' ||
+    (import.meta.env && import.meta.env.DEV)
+  ) {
+    console.log('[Visitor Tracker] Skipping visit count increment in development mode.');
+    return;
+  }
+
   try {
     const { dailyKey, monthlyKey } = getKstDateStrings();
     const docRefTotal = doc(db, 'site_stats', 'air-theremin');
